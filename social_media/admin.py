@@ -1,6 +1,10 @@
 from django.contrib import admin
 
 
-from social_media.models import Post
+# from social_media.models import Post, Hashtag, Comment, Like
+from social_media.models import Post, Hashtag
 
-admin.register(Post)
+admin.site.register(Post)
+admin.site.register(Hashtag)
+# admin.site.register(Comment)
+# admin.site.register(Like)
