@@ -12,10 +12,10 @@ urlpatterns = [
     path("users/", UserViewSet.as_view({"get": "list"}), name="users"),
 
 
-    path('subscribe/', SubscribeUserView.as_view(), name='subscribe'),
-    path('unsubscribe/<int:pk>/', UnsubscribeUserView.as_view(), name='unsubscribe'),
-    path('following/', UserFollowingListView.as_view(), name='following'),
-    path('followers/', UserFollowersListView.as_view(), name='followers'),
+    path("subscribe/", SubscribeUserView.as_view(), name="subscribe"),
+    path("unsubscribe/<int:pk>/", UnsubscribeUserView.as_view(), name="unsubscribe"),
+    path("following/", UserFollowingListView.as_view(), name="following"),
+    path("followers/", UserFollowersListView.as_view(), name="followers"),
 ]
 
 app_name = "user"

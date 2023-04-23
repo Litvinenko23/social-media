@@ -55,3 +55,24 @@ class PostViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=False, methods=['get'])
+    def own_posts(self, request):
+        posts = Post.objects.filter(user=request.user)
+        serializer = self.get_serializer(posts, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['get'])
+    def following_posts(self, request):
+        following_users = request.user.following.all()
+        posts = Post.objects.filter(user__in=following_users)
+        serializer = self.get_serializer(posts, many=True)
+
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['get'])
+    def search_posts_by_hashtag(self, request, hashtag):
+        hashtag_obj, _ = Hashtag.objects.get_or_create(name=hashtag)
+        posts = Post.objects.filter(hashtags=hashtag_obj)
+        serializer = self.get_serializer(posts, many=True)
+        return Response(serializer.data)
