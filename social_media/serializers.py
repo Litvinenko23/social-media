@@ -17,3 +17,16 @@ class PostSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ("user",)
 
+
+class PostListSerializer(PostSerializer):
+    pass
+
+
+class PostDetailSerializer(PostSerializer):
+    pass
+
+
+class PostImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ("id", "image", )

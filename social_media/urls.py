@@ -7,8 +7,6 @@ from social_media.views import PostViewSet, HashtagViewSet
 router = routers.DefaultRouter()
 router.register("posts", PostViewSet)
 router.register("hashtags", HashtagViewSet)
-# router.register("comments", CommentViewSet)
-# router.register("likes", LikeViewSet)
 
 urlpatterns = [
     path("", include(router.urls))
