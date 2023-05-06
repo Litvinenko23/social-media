@@ -1,0 +1,11 @@
+venv
+.DB_Store
+**__pycache__
+.idea
+db.sqlite3
+*.iml
+.env
+.pytest_cache/
+**__pycache__/
+**db.sqlite3
+media
