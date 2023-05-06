@@ -5,15 +5,20 @@ from rest_framework.response import Response
 
 from social_media.models import Post, Hashtag
 from social_media.permissions import IsAdminOrIfAuthenticatedReadOnly
-from social_media.serializers import PostSerializer, HashtagSerializer, PostImageSerializer, PostListSerializer, \
-    PostDetailSerializer
+from social_media.serializers import (
+    PostSerializer,
+    HashtagSerializer,
+    PostImageSerializer,
+    PostListSerializer,
+    PostDetailSerializer,
+)
 
 
 class HashtagViewSet(viewsets.ModelViewSet):
     queryset = Hashtag.objects.all()
     serializer_class = HashtagSerializer
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -56,13 +61,13 @@ class PostViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=["get"])
     def own_posts(self, request):
         posts = Post.objects.filter(user=request.user)
         serializer = self.get_serializer(posts, many=True)
         return Response(serializer.data)
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=["get"])
     def following_posts(self, request):
         following_users = request.user.following.all()
         posts = Post.objects.filter(user__in=following_users)
@@ -70,7 +75,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data)
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=["get"])
     def search_posts_by_hashtag(self, request, hashtag):
         hashtag_obj, _ = Hashtag.objects.get_or_create(name=hashtag)
         posts = Post.objects.filter(hashtags=hashtag_obj)

@@ -9,7 +9,11 @@ from rest_framework.settings import api_settings
 from rest_framework.views import APIView
 
 from social_media.permissions import IsAdminOrIfAuthenticatedReadOnly
-from .serializers import UserSerializer, AuthTokenSerializer, SubscribeUserSerializer
+from .serializers import (
+    UserSerializer,
+    AuthTokenSerializer,
+    SubscribeUserSerializer,
+)
 
 
 class CreateUserView(generics.CreateAPIView):
@@ -23,7 +27,7 @@ class CreateTokenView(ObtainAuthToken):
 
 class ManageUserView(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
-    authentication_classes = (TokenAuthentication, )
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
     def get_object(self):

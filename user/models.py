@@ -53,10 +53,22 @@ def user_image_file_path(instance, filename):
 
 
 class User(AbstractUser):
-    profile_picture = models.ImageField(upload_to=user_image_file_path, blank=True, null=True)
+    profile_picture = models.ImageField(
+        upload_to=user_image_file_path, blank=True, null=True
+    )
     bio = models.TextField(blank=True, null=True)
-    followers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="following_users", symmetrical=False, blank=True)
-    following = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="followers_users", symmetrical=False, blank=True)
+    followers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="following_users",
+        symmetrical=False,
+        blank=True,
+    )
+    following = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="followers_users",
+        symmetrical=False,
+        blank=True,
+    )
 
     username = None
     email = models.EmailField(_("email address"), unique=True)
