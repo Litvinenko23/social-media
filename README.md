@@ -1,5 +1,4 @@
-# social-media
-## Social Media API
+# Social Media API
 - The Social Media API is a RESTful API for a social platform that allows users to create profiles, follow other users, create and receive posts, and perform basic social media activities.
 
 ## API Details
